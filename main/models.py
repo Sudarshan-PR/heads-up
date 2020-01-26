@@ -7,3 +7,12 @@ class UserInputs(models.Model):
     email_id = models.ForeignKey(User, on_delete=models.CASCADE)
     url = models.URLField()
     limit = models.IntegerField()
+
+class Check(models.Model):
+    url = models.URLField(primary_key=True)
+    prices = models.IntegerField()
+
+class Orders(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    urls = models.ForeignKey(Check, on_delete=models.CASCADE)
+

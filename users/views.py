@@ -7,7 +7,9 @@ def register(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'users/aja.html')
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account successfully created {username}! ')
+            return redirect('home')
 
     else:
         form = SignUpForm()
