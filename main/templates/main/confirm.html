@@ -6,20 +6,26 @@
     <body>
         <h2>Confirmation</h2>
         <br>
-        {{ Product_name }}
-        <br>
-        {{ Product_price }}
-        <br>
-        {{ url }}
-        <br>
+        {% if message %}
+            {{ message }}
+        
+        {% else %}
+            {{ Product_name }}
+            <br>
+            {{ Product_price }}
+            <br>
+            {{ url }}
+            <br>
 
-        {{ limit }}
-        {{ message }}
+            {{ limit }}
+            {{ message }}
 
-        <form method='POST'>
-            {% csrf_token %} 
-            <input type='submit' value='Go' name='_go'>
-        </form>
+            <form method='POST'>
+                {% csrf_token %} 
+                <input type='submit' value='Go' name='_go'>
+            </form>        
+        {% endif %}
+
     </body>
 
 

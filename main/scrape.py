@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
+import re
 
 class ScrapeAmzn:
     def __init__(self, link):
