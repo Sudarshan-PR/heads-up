@@ -24,24 +24,31 @@ def confirm(request):
             if form.is_valid():
                 url = form.cleaned_data['link']
 
-                urlRegex = re.compile(r'(https://www.amazon.in/.+/dp/.+/)(ref=.+)?')
+                urlRegex = re.compile(r'(https://www.amazon.in/.+/dp/.+/?)(ref=.+)?')
                 mo = urlRegex.search(url)
 
                 if mo is not None:
                     url = mo.group(1)
                     scrape = ScrapeAmzn(mo.group(1))
                     price = scrape.getPrice()
+                    name = scrape.getProductName()
                     limit = form.cleaned_data['limit']
 
                 else:
-                    msg = "Sorry, currently only https://www.amazon.in urls work!"
-                    return render(request, 'main/confirm.html', {'message': msg})
+                    messages.error(request, "Sorry, currently only https://www.amazon.in urls work!")
+                    return redirect('home')
 
                 email = request.user.email
-                return render(request, 'main/confirm.html', {'Product_price': price, 'url': url, 'limit': limit, 'email': email})
+                return render(request, 'main/confirm.html', {'Product_price': price, 'Product_name':name, 'url': url, 'limit': limit, 'email': email})
 
         elif '_go' in request.POST:
-            u = UserInputs(email_id=request.user.email, url=url, limit=limit)
+            email = request.user.email
+
+            if (url, email) in list(UserInputs.objects.values_list('url','email_id')):
+                messages.error(request, 'This product has already exists!')
+                return redirect('home')
+
+            u = UserInputs(email_id=email, url=url, limit=limit)
             u.save()
 
             if url not in list(Check.objects.values_list('url', flat=True)):

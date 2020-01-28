@@ -1,0 +1,4 @@
+1. Automated checking and updating. ~~django-celery~~
+2. Send emails.
+3. Delete urls from DB. (If user wishes)
+4. Change hashing algorithm to Argon2

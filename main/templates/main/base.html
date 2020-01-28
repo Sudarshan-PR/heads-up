@@ -11,7 +11,16 @@
     <body>
     {% if messages %}
         {% for message in messages %}
-            {{ message }}
+            {% if message.tags == 'success' %}
+            <div class='alert alert-success'>
+              <strong>Success! </strong>{{ message }}
+            </div>
+
+            {% elif message.tags == 'error' %}
+            <div class='alert alert-danger'>
+              <strong>Error! </strong>{{ message }}
+            </div>
+            {% endif %}         
         {% endfor %}
     {% endif %}
 
@@ -40,8 +49,10 @@
     </nav>
     </header>
     
-    {% block content %}
-    {% endblock content %}
+    <div class='container'>
+      {% block content %}
+      {% endblock content %}
+    </div>
     </body>
 
 </html>

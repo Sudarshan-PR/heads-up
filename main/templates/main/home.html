@@ -6,15 +6,14 @@
 {% endblock title %}
 
 {% block content %}
-    <h1>WELCOME {{ user }}</h1> 
+        <h1>WELCOME {{ user }}</h1> 
 
-    <form method='POST' action="{% url 'confirm' %}">
-    {% csrf_token %}
+        <form method='POST' action="{% url 'confirm' %}">
+        {% csrf_token %}
 
-    {{ form|crispy }}
+        {{ form|crispy }}
 
-    <button type=submit name='confirm'>Go</button>
+        <button type=submit name='confirm' class='btn'>Go</button>
 
-    </form>
-
+        </form>
 {% endblock content %}

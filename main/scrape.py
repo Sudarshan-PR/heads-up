@@ -24,6 +24,14 @@ class ScrapeAmzn:
 
         return price
 
+    def getProductName(self):
+        soup = BeautifulSoup(self.page.content, "lxml")
+        
+        name = soup.find(id='productTitle').getText()
+        name = name.strip()
+
+        return name
+    
 #-----object creation example
 #----------scrap = scrapAmzn("https://www.amazon.in/Reno2-Storage-Additional-Exchange-Offers/dp/B07XBYF7DL")
 #----------scrap.getPrice()

@@ -1,34 +1,23 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Confirmation</title>
-    </head>
-    <body>
-        <h2>Confirmation</h2>
-        <br>
-        {% if message %}
-            {{ message }}
-        
-        {% else %}
-            {{ Product_name }}
-            <br>
-            {{ Product_price }}
-            <br>
-            {{ url }}
-            <br>
+{% extends 'main/base.html' %}
 
-            {{ limit }}
-            <br>
-            {{ email }}
-            {{ message }}
+{% block title %}
+    Confirmation
+{% endblock title %}
 
-            <form method='POST'>
-                {% csrf_token %} 
-                <input type='submit' value='Go' name='_go'>
-            </form>        
-        {% endif %}
+{% block content %}
+    Product name: {{ Product_name }}
+    <br>
+    Product price: {{ Product_price }}
+    <br>
+    Final URL:{{ url }}
+    <br>
+    Entered Limit: {{ limit }}
+    <br>
+    {{ email }}
+    {{ message }}
 
-    </body>
-
-
-</html>
+    <form method='POST'>
+        {% csrf_token %} 
+        <input type='submit' value='Go' name='_go' class='btn'>
+    </form>         
+{% endblock content %}

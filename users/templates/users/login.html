@@ -5,19 +5,23 @@
     Login
 {% endblock title %}
 
-        <h1>Login</h1>
 
 {% block content %}
     {% if user.is_authenticated %}
         <a href="{% url 'home' %}">Go home</a>
     
     {% else %}
-       <form method='POST' style="margin: auto; width: 60%;">
-        {% csrf_token %}
+        <div class='jumbotron'>
+            <h1>Log In</h1>
+           <form method='POST' >
+              {% csrf_token %}
 
-        {{ form|crispy }}
+               {{ form|crispy }}
 
-        <button type='submit'>Log In</button>
-        </form>
+                <button type='submit' class='btn btn-success'>Log In</button>
+            </form>
+
+            <small>Don't have an account? <a href="{% url 'register' %}">Sign Up</a> now!</small>
+        </div>    
     {% endif %}
 {% endblock content %}
