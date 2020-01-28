@@ -24,7 +24,7 @@ def confirm(request):
             if form.is_valid():
                 url = form.cleaned_data['link']
 
-                urlRegex = re.compile(r'(https://www.amazon.in/.+/dp/.+/?)(ref=.+)?')
+                urlRegex = re.compile(r'(https://www.amazon.in(/.+)*/dp/.+/?)(ref=.+)?')
                 mo = urlRegex.search(url)
 
                 if mo is not None:

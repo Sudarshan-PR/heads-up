@@ -9,15 +9,13 @@
     <br>
     Product price: {{ Product_price }}
     <br>
-    Final URL:{{ url }}
+    Final URL: {{ url }}
     <br>
     Entered Limit: {{ limit }}
-    <br>
-    {{ email }}
-    {{ message }}
+
 
     <form method='POST'>
         {% csrf_token %} 
-        <input type='submit' value='Go' name='_go' class='btn'>
+        <input type='submit' value='Go' name='_go' class='btn btn-default'>
     </form>         
 {% endblock content %}
