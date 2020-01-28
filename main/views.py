@@ -8,7 +8,7 @@ from .forms import QueryForm
 from .scrape import ScrapeAmzn
 import re
 # Create your views here.
-url = limit = None
+url = limit = price = None
 
 @login_required
 def home(request):
@@ -17,7 +17,7 @@ def home(request):
 
 @login_required
 def confirm(request):
-    global url, limit
+    global url, limit, price
     if request.method == 'POST':
         if 'confirm' in request.POST:
             form = QueryForm(request.POST)
@@ -44,7 +44,10 @@ def confirm(request):
             u = UserInputs(email_id=request.user.email, url=url, limit=limit)
             u.save()
 
-            
+            if url not in list(Check.objects.values_list('url', flat=True)):
+                c = Check(url=url, prices=price)
+                c.save()
+                
             messages.success(request, f'URL "{url}" successfully added! ')
             return redirect('home')
 
