@@ -21,7 +21,7 @@ class scrapAmzn:
         price = int(price)
         price /= 100
 
-        print(price)
+        #print(price)
 
         return price
 
@@ -32,14 +32,11 @@ class scrapAmzn:
 
         name = name.strip()
 
-        print(name)
+        #print(name)
 
         return name
 
 #-----object creation example
-#---------
-scrap = scrapAmzn("https://www.amazon.in/Nokia-4-2-Black-32GB-Storage/dp/B07RY2NR8F")
-#---------
-scrap.getProductName()
-#---------
-scrap.getPrice()
+#---------scrap = scrapAmzn("https://www.amazon.in/Nokia-4-2-Black-32GB-Storage/dp/B07RY2NR8F")
+#---------scrap.getProductName()
+#---------scrap.getPrice()
