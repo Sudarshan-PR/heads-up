@@ -8,12 +8,16 @@
         <h1>Login</h1>
 
 {% block content %}
-    <form method='POST' style="margin: auto; width: 60%;">
+    {% if user.is_authenticated %}
+        <a href="{% url 'home' %}">Go home</a>
+    
+    {% else %}
+       <form method='POST' style="margin: auto; width: 60%;">
         {% csrf_token %}
 
         {{ form|crispy }}
 
         <button type='submit'>Log In</button>
-
-    </form>
+        </form>
+    {% endif %}
 {% endblock content %}
